@@ -32,27 +32,33 @@ apt-mark unhold keyboard-configuration
 apt-get -y install vim git zip bzip2 fontconfig curl language-pack-zh-hans
 
 # install Java 11
-apt-get -y install openjdk-11-jdk
+#apt-get -y install openjdk-11-jdk
+apt-get -y install openjdk-8-jdk
+
+# install maven
+sudo curl -SL http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -o /etc/yum.repos.d/epel-apache-maven.repo
+sudo apt-get install maven
+
 
 # install Node.js
-wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.gz -O /tmp/node.tar.gz
-tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
+#wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.gz -O /tmp/node.tar.gz
+#tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
 
 # update NPM
-npm install -g npm
+#npm install -g npm
 
 # install Yarn
-npm install -g yarn
-su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
+#npm install -g yarn
+#su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 
 # install Yeoman
-npm install -g yo
+#npm install -g yo
 
 # install JHipster
-npm install -g generator-jhipster@6.2.0
+#npm install -g generator-jhipster@6.2.0
 
 # install JHipster UML
-npm install -g jhipster-uml@2.0.3
+#npm install -g jhipster-uml@2.0.3
 
 ################################################################################
 # Install the graphical environment
@@ -81,35 +87,35 @@ apt-get remove -y light-locker --purge
 
 # change the default wallpaper
 #wget https://jhipster.github.io/images/wallpaper-004-2560x1440.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-sed -i -e 's/xubuntu-wallpaper.png/jhipster-wallpaper.png/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+#wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
+#sed -i -e 's/xubuntu-wallpaper.png/jhipster-wallpaper.png/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 ################################################################################
 # Install the development tools
 ################################################################################
 
 # install Ubuntu Make - see https://wiki.ubuntu.com/ubuntu-make
-apt-get install -y ubuntu-make
+#apt-get install -y ubuntu-make
 
 # install Chromium Browser
-apt-get install -y chromium-browser
+#apt-get install -y chromium-browser
 
 # install MySQL Workbench
-apt-get install -y mysql-workbench
+#apt-get install -y mysql-workbench
 
 # install PgAdmin
-apt-get install -y pgadmin3
+#apt-get install -y pgadmin3
 
 # install Heroku toolbelt
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+#wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 # install Guake
-apt-get install -y guake
-cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
+#apt-get install -y guake
+#cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 
 # install jhipster-devbox
-git clone git://github.com/jhipster/jhipster-devbox.git /home/vagrant/jhipster-devbox
-chmod +x /home/vagrant/qwop-devbox/tools/*.sh
+#git clone git://github.com/jhipster/jhipster-devbox.git /home/vagrant/jhipster-devbox
+#chmod +x /home/vagrant/qwop-devbox/tools/*.sh
 
 # install zsh
 apt-get install -y zsh
@@ -129,16 +135,16 @@ echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.
 chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 
 # install Visual Studio Code
-su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
+#su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
 
 # fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
-sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
+#sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
 
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
-sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
+#sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
 #install IDEA community edition
-su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+#su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
 # increase Inotify limit (see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit)
 echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
